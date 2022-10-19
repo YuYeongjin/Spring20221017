@@ -1,4 +1,4 @@
-package org.zerock.controller.p02param;
+package org.zerock.controller.lecture.p02param;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

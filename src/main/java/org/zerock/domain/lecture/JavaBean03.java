@@ -6,7 +6,7 @@ import lombok.Data;
 public class JavaBean03 {
 	private int score;
 	private String className;
-	private String sutdentNumber;
+	private String studentNumber;
 	private String location;
 	private double avg;
 }

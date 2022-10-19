@@ -1,0 +1,24 @@
+package org.zerock.controller.lecture.p04attribute;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("ex16")
+public class Controller16 {
+	
+	// /ex16/sub01
+	// /WEB-INF/views/ex16/sub01.jsp forward
+	@RequestMapping("sub01")
+	public void method(HttpServletRequest req) {
+		req.setAttribute("myName", "park ji sung");
+	}
+	
+	@RequestMapping("sub02")
+	public void method2(HttpServletRequest req) {
+		req.setAttribute("address", "seoul");
+		
+	}
+}
