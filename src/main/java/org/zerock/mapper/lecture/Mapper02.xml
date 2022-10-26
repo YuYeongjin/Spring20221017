@@ -10,4 +10,17 @@
 
     </select>
 
+    <select id="getCustomerIds" resultType="int">
+        SELECT CustomerId
+        FROM Customers
+    </select>
+
+    <select id="getProductPrices" resultType="double">
+        SELECT Price FROM Products
+    </select>
+
+    <select id="getEmployeeBirthDate" resultType="java.time.LocalDate">
+        SELECT BirthDate FROM Employees
+
+    </select>
 </mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.lecture.Mapper03">
+    <select id="getCustomer" resultMap="customerNameCountryMap">
+        SELECT CustomerName, Country
+        FROM Customers
+        WHERE CustomerID = 77
+    </select>
+
+    <resultMap type="org.zerock.domain.lecture.JavaBean04" id="customerNameCountryMap">
+        <result column="CustomerName" property="name"/>
+        <result column="Country" property="country"/>
+    </resultMap>
+
+    <select id="getEmployee" resultMap="employeeFnameLname">
+        SELECT FirstName, LastName
+        FROM Employees
+        WHERE EmployeeId=5
+
+    </select>
+
+    <resultMap id="employeeFnameLname" type="org.zerock.domain.lecture.JavaBean05">
+        <result column="FirstName" property="firstName"/>
+        <result column="LastName" property="lastName"/>
+
+    </resultMap>
+
+    <select id="getEmployee2" resultType="org.zerock.domain.lecture.JavaBean05">
+        SELECT FirstName, LastName
+        FROM Employees
+        WHERE EmployeeId=3
+
+    </select>
+
+    <select id="getCustomer2" resultType="org.zerock.domain.lecture.JavaBean04">
+        SELECT CustomerName name,Country FROM Customers WHERE CustomerId=55
+
+    </select>
+
+    <select id="getProduct" resultType="org.zerock.domain.lecture.JavaBean06">
+        SELECT ProductName name, Price FROM Products WHERE ProductID = 8
+
+    </select>
+
+
+</mapper>
