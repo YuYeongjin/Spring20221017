@@ -25,5 +25,37 @@
 	WHERE City=#{city} AND Country=#{country}
 	
 	</select>
+	<select id="getSupplierNameByCityAndCountry" resultType="string">
+	SELECT SupplierName
+	FROM Suppliers
+	WHERE City=#{city} AND Country=#{country}
+	
+	</select>
+	
+	<select id="getContactName" resultType="string">
+	SELECT ContactName
+	FROM Customers
+	WHERE CustomerName=#{name}
+	AND Country=#{country}
+	</select>
+	
+	<select id="getSupplierContactName" resultType="string">
+	
+	SELECT ContactName
+	FROM Suppliers
+	WHERE SupplierName =#{name}
+	AND Country=#{country}
 
+	</select>
+	
+	<select id= "getProductName" resultType="string">
+		SELECT ProductName FROM Products 
+		WHERE CategoryId = #{arg1.categoryId} 
+		AND Price &gt; #{arg2.price}
+	</select>
+	
+	
+	
+	
+	
 </mapper>

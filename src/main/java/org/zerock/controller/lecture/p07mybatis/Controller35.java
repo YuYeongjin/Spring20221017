@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.domain.lecture.JavaBean04;
+import org.zerock.domain.lecture.JavaBean16;
+import org.zerock.domain.lecture.JavaBean17;
 import org.zerock.mapper.lecture.Mapper09;
+
+import lombok.val;
 
 @Controller
 @RequestMapping("ex35")
@@ -40,4 +45,38 @@ public class Controller35 {
 		System.out.println(berlin);
 		System.out.println(london);
     }
+	
+	@RequestMapping("sub04")
+	public void method4() {
+		String londona = mapper.getSupplierNameByCityAndCountry("UK","Londona");
+		String newOl = mapper.getSupplierNameByCityAndCountry("USA", "New Orleans");
+		
+		System.out.println(londona);
+		System.out.println(newOl);
+	}
+	// /ex35/sub05?name=Alfreds Futterkiste&country=Germany ---> Maria Anders
+	// /ex35/sub05?name=Antonio Moreno Taqueria&country=Mexico ---> 
+	
+	@RequestMapping("sub05")
+	public void method5(JavaBean04 p) {
+		String c1 = mapper.getContactName(p);
+		System.out.println(c1);
+		
+		
+	}
+	// /ex35/sub06?name=New Orleans Cajun Delights&country=USA ---> Maria Anders
+		// /ex35/sub06?name=Grandma Kelly's Homestead&country=USA ---> 
+	@RequestMapping("sub06")
+	public void method6(JavaBean04 b) {
+		String c = mapper.getSupplierContactName(b);
+		
+		System.out.println(b);
+	}
+	
+	// /ex35/sub07?categoryId=1&price=10.00
+	@RequestMapping("sub07")
+	public void method7(JavaBean16 p1, JavaBean17 p2) {
+		List<String> list = mapper.getProductName(p1, p2);
+		list.forEach(System.out::println);
+	}
 }
