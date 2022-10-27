@@ -21,7 +21,7 @@
         </collection>
     </resultMap>
 
-    <select id="getSupplier" resultMap="SupplierMap">
+    <select id="getSupplier" resultMap="supplierMap">
         SELECT
         s.SupplierID,
         s.SupplierName,
@@ -30,14 +30,11 @@
         WHERE s.SupplierID = 1
     </select>
 
-    <resultMap type="org.zerock.domain.lecture.JavaBean12" id="SupplierMap" >
-        <id column="SupplierID" property="id"/>
-        <result column="SupplierName" property="name"/>
+    <resultMap type="org.zerock.domain.lecture.JavaBean12" id="supplierMap">
+        <id column="supplierId" property="id"/>
+        <result column="supplierName" property="name"/>
         <collection property="productName" ofType="string">
             <result column="productName"/>
         </collection>
     </resultMap>
-
-
-
 </mapper>
