@@ -27,4 +27,5 @@ public class Controller34 {
         mapper08.getProductName2().forEach(System.out::println);
 
     }
+    
 }
