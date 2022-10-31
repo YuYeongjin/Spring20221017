@@ -66,10 +66,4 @@ public class Controller36 {
 	public void supplierForm() {
 		
 	}
-	@PostMapping("sub08")
-	public void method8(JavaBean19 supplier) {
-		int cnt = mapper.insertSupplier(supplier);
-		System.out.println(cnt+"개 공급자 정보 입력됨");
-	}
-	
 }
