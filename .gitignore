@@ -6,4 +6,4 @@ build/
 .settings/
 .springBeans
 src/main/webapp/WEB-INF/props/jdbc.properties
-mybatis-config
+mybatis-config.xml
