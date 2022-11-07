@@ -5,19 +5,48 @@
 
 <mapper namespace="org.zerock.mapper.board.ReplyMapper">
 
-    <select id="selectReplyByBoardId" resultType="org.zerock.domain.board.ReplyDto">
+    <update id="update">
+        UPDATE Reply
+        SET
+        content = #{content}
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="selectById" resultType="org.zerock.domain.board.ReplyDto">
         SELECT
-        id,boardId,content,inserted
+        id,
+        boardId,
+        content,
+        inserted
         FROM
         Reply
         WHERE
-        boardId=#{boardId}
+        id = #{id}
+
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM Reply
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectReplyByBoardId" resultType="org.zerock.domain.board.ReplyDto">
+        SELECT
+        id,
+        boardId,
+        content,
+        inserted
+        FROM
+        Reply
+        WHERE
+        boardId = #{boardId}
         ORDER BY
         id DESC
     </select>
+
     <insert id="insert">
         INSERT INTO Reply (boardId, content)
-        VALUES (#{boardId}, #{Content})
+        VALUES (#{boardId}, #{content})
     </insert>
-
 </mapper>
