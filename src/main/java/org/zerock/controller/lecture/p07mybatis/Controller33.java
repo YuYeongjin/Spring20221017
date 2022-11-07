@@ -10,32 +10,37 @@ import org.zerock.mapper.lecture.Mapper06;
 @Controller
 @RequestMapping("ex33")
 public class Controller33 {
-
-    @Autowired
-    private Mapper06 mapper;
-
-    @RequestMapping("sub01")
-    public void method1() {
-        JavaBean11 category = mapper.getCategory();
-        System.out.println(category.getId());
-        System.out.println(category.getName());
-        category.getProductName().forEach(System.out::println);
-
-    }
-
-    /*
-SELECT
-    s.SupplierID,
+	
+	@Autowired
+	private Mapper06 mapper;
+	
+	@RequestMapping("sub01")
+	public void method1() {
+		JavaBean11 category = mapper.getCategory();
+		System.out.println(category.getId());
+		System.out.println(category.getName());
+		category.getProductName().forEach(System.out::println);
+		
+	}
+	
+	/*
+SELECT 
+	s.SupplierID,
     s.SupplierName,
     p.ProductName
 FROM Products p JOIN Suppliers s ON p.SupplierID = s.SupplierID
 WHERE s.SupplierID = 1
-     */
-    @RequestMapping("sub02")
-    public void method2() {
-        JavaBean12 supplier = mapper.getSupplier();
-        System.out.println(supplier.getId());
-        System.out.println(supplier.getName());
-        supplier.getProductName().forEach(System.out::println);
-    }
+	 */
+	@RequestMapping("sub02")
+	public void method2() {
+		JavaBean12 supplier = mapper.getSupplier();
+		System.out.println(supplier.getId());
+		System.out.println(supplier.getName());
+		supplier.getProductName().forEach(System.out::println);
+	}
 }
+
+
+
+
+

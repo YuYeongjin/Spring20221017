@@ -4,6 +4,7 @@ import org.zerock.domain.lecture.JavaBean18;
 import org.zerock.domain.lecture.JavaBean19;
 
 public interface Mapper10 {
+	
 	int removeCustomer();
 
 	int removeEmployee();
@@ -15,6 +16,25 @@ public interface Mapper10 {
 	int addCustomer();
 
 	int addSupplier();
-	int insertCustomer(JavaBean18 cus);
-	int insertSupplier(JavaBean19 sup);
+	
+	int insertCustomer(JavaBean18 customer);
+
+	int insertSupplier(JavaBean19 supplier);
+
+	int insertCustomerAndGetKey(JavaBean18 customer);
+
+	int insertSupplierAndKey(JavaBean19 supplier);
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

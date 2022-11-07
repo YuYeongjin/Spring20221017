@@ -5,26 +5,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.domain.lecture.JavaBean03;
 import org.zerock.domain.lecture.Student;
+
 @Controller
 @RequestMapping("ex17")
 public class Controller17 {
-	
+
 	@RequestMapping("sub01")
 	public void method1(Model model) {
-		model.addAttribute("myName","cha bum");
+		model.addAttribute("myName", "cha bum");
 	}
 	
-	// ex17 sub02 요청  및 포워드 email attribute
+	// /ex17/sub02 요청
+	// /WEB-INF/views/ex17/sub02.jsp 포워드
+	// add attribute : email : abc@daum.net
 	@RequestMapping("sub02")
 	public void method2(Model model) {
-		model.addAttribute("email", "abc@daun.net");
+		model.addAttribute("email", "abc@daum.net");
 	}
+	
 	@RequestMapping("sub03")
 	public void method3(Model model) {
-		model.addAttribute("name", "honggildong");
-		model.addAttribute("age", "50");
-		model.addAttribute("address", "seoul");
-		model.addAttribute("email", "abc@daun.net");
+		model.addAttribute("name", "son hm");
+		model.addAttribute("address", "london");
+		model.addAttribute("age", 99);
+		model.addAttribute("email", "hm@daum.net");
 	}
 	
 	@RequestMapping("sub04")
@@ -33,21 +37,23 @@ public class Controller17 {
 		obj.setAvg(9.99);
 		obj.setClassName("spring");
 		obj.setLocation("seoul");
-		obj.setStudentNumber("s50");
-		model.addAttribute("student",obj);
+		obj.setScore(100);
+		obj.setStudentNumber("s80");
+		
+		model.addAttribute("student", obj);
 	}
+	
 	@RequestMapping("sub05")
 	public void method5(Model model) {
-		Student s= new Student();
+		Student s = new Student();
 		s.setName("park ji sung");
 		s.setClassName("soccer");
 		s.setStudentNumber("13");
 		
-//		model.addAttribute("student",s);
+//		model.addAttribute("student", s);
 		model.addAttribute(s);
-		
+		model.addAttribute("hello");
 	}
-	
 }
 
 

@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class JavaBean06 {
-    private String name;
-    private double price;
+	private String name;
+	private double price;
 }

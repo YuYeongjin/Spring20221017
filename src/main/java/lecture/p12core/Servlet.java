@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Servlet {
-	
+
 	@Autowired // reflection
 	private Dao dao;
 	

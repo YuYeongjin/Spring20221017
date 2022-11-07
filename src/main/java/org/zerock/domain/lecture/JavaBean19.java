@@ -1,15 +1,16 @@
 package org.zerock.domain.lecture;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 @Data
 public class JavaBean19 {
+	// SupplierDTO
+	private int id;
 	private String name;
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
-	private LocalDate date;
-	private LocalDateTime dateTime;
-
+	private String contactName;
+	private String address;
+	private String city;
+	private String postalCode;
+	private String country;
+	private String phone;
 }

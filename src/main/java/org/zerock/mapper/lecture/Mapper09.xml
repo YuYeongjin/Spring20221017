@@ -1,61 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="org.zerock.mapper.lecture.Mapper09">
-
 	<!-- preparedStatement 쿼리의 ?  -->
-	<!-- #{파라미터 명} -->
+	<!-- 는 #{파라미터명}  -->
 	<select id="getCustomerNameById" resultType="string">
-		SELECT CustomerName
-		FROM Customers
-		WHERE CustomerID = #{id}
+SELECT 
+	CustomerName
+FROM 
+	Customers
+WHERE
+	CustomerID = #{id}
+	</select>
+	
+	<select id="getEmployeeFirstNameById" resultType="string">
+SELECT 
+	FirstName
+FROM
+	Employees
+WHERE
+	EmployeeId = #{employeeId}
 	
 	</select>
 	
-	<select id="getEmployeeFirstNAmeById" resultType="string">
-		SELECT FirstName
-		FROM Employees
-		WHERE EmployeeID=#{id}	
-	</select>
 	<select id="getCustomerNameByCityAndCountry" resultType="string">
-	SELECT CustomerName
-	FROM Customers
-	WHERE City=#{city} AND Country=#{country}
-	
+SELECT 
+	CustomerName
+FROM
+	Customers
+WHERE
+	City = #{city}
+	AND Country = #{country}
 	</select>
-	<select id="getSupplierNameByCityAndCountry" resultType="string">
-	SELECT SupplierName
-	FROM Suppliers
-	WHERE City=#{city} AND Country=#{country}
 	
+	
+	<select id="getSupplierNameByCityAndCountry" resultType="string">
+SELECT
+	SupplierName
+FROM
+	Suppliers
+WHERE
+	City = #{location}
+	AND Country = #{nation}
 	</select>
 	
 	<select id="getContactName" resultType="string">
-	SELECT ContactName
-	FROM Customers
-	WHERE CustomerName=#{name}
-	AND Country=#{country}
+SELECT
+	ContactName
+FROM
+	Customers
+WHERE
+	CustomerName = #{name}
+ AND Country = #{country}
 	</select>
-	
-	<select id="getSupplierContactName" resultType="string">
-	
-	SELECT ContactName
-	FROM Suppliers
-	WHERE SupplierName =#{name}
-	AND Country=#{country}
 
+	<select id="getSupplierContactName" resultType="string">
+SELECT 
+	ContactName
+FROM 
+	Suppliers
+WHERE
+	    SupplierName = #{name}
+	AND Country = #{country}
+	
 	</select>
 	
-	<select id= "getProductName" resultType="string">
-		SELECT ProductName FROM Products 
-		WHERE CategoryId = #{arg1.categoryId} 
-		AND Price &gt; #{arg2.price}
+	<select id="getProductName" resultType="string">
+<![CDATA[
+SELECT 
+	ProductName
+FROM 
+	Products
+WHERE
+	CategoryId = #{arg1.categoryId}
+    AND Price <= #{arg2.price}
+]]>
 	</select>
-	
-	
-	
-	
-	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

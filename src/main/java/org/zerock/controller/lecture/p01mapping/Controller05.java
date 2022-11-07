@@ -10,30 +10,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("ex05")
 public class Controller05 {
 
-	@RequestMapping(value="sub01", method=RequestMethod.GET)
+	@RequestMapping(value = "sub01", method = RequestMethod.GET)
 	public void method1() {
-		System.out.println("method1");
+		System.out.println("method1 !!!!!!!");
 	}
-	// @RequestMapping(method=requsetmethod.get)
+	
+	// @RequestMapping(method = RequestMethod.GET)
 	@GetMapping("sub02")
 	public void method2() {
-		System.out.println("method2");
+		System.out.println("method2 @@@@@@@@");
 	}
-	// @RequestMapping(method=requsetmethod.post)
+	
+	// @RequestMapping(method = RequestMethod.POST)
 	@PostMapping("sub03")
 	public void method3() {
-		System.out.println("method3");
+		System.out.println("mehtod3 ##########");
 	}
-	//	get sub04
 	
+	// get 방식 
+	// sub04 경로
 	@GetMapping("sub04")
 	public void method4() {
-		System.out.println("method4");
+		System.out.println("method4 $$$$$$$");
 	}
-	// post sub05
+	
+	// post 방식
+	// sub05 경로
 	@PostMapping("sub05")
 	public void method5() {
-		System.out.println("method5");
+		System.out.println("method5 %%%%%%%%%%%");
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

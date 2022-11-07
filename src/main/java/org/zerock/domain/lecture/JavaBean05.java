@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class JavaBean05 {
-    private String firstName;
-    private String lastName;
-    private int id;
+	private int id;
+	private String firstName;
+	private String lastName;
 }

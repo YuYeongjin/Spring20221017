@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
-
+	
 	@Bean
 	public Controller controller() {
 		return new Controller(dao());
@@ -15,11 +15,11 @@ public class Config {
 	public Servlet servlet() {
 		Servlet s = new Servlet();
 		s.setDao(dao());
-		return new Servlet();
+		return s;
 	}
+	
 	@Bean
 	public Dao dao() {
 		return new Dao();
 	}
-	
 }

@@ -12,20 +12,29 @@ import org.zerock.mapper.lecture.Mapper04;
 @Controller
 @RequestMapping("ex31")
 public class Controller31 {
-
-    @Autowired
-    private Mapper04 mapper;
-
-    @RequestMapping("sub01")
-    public void method1() {
-        List<JavaBean06> productList = mapper.getProductList();
-        productList.forEach(System.out::println);
-    }
-
-    @RequestMapping("sub02")
-    public void method2() {
-        List<JavaBean05> employeeList = mapper.getEmployeeList();
-        employeeList.forEach(System.out::println);
-    }
+	
+	@Autowired
+	private Mapper04 mapper;
+	
+	@RequestMapping("sub01")
+	public void method1() {
+		List<JavaBean06> productList = mapper.getProductList();
+		productList.forEach(System.out::println);
+	}
+	
+	@RequestMapping("sub02")
+	public void method2() {
+		List<JavaBean05> employeeList = mapper.getEmployeeList();
+		employeeList.forEach(System.out::println);
+	}
 }
+
+
+
+
+
+
+
+
+
 

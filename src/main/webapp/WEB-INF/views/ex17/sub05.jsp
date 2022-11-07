@@ -13,6 +13,13 @@
 	<h1>${student.name }</h1>
 	<h1>${student.className }</h1>
 	<h1>${student.studentNumber }</h1>
+	
+	<hr>
+	
+	<h1>${string }</h1>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+

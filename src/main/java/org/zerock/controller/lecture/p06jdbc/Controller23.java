@@ -1,8 +1,8 @@
 package org.zerock.controller.lecture.p06jdbc;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.sql.DataSource;
 
@@ -13,19 +13,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("ex23")
 public class Controller23 {
+
 	@Autowired
 	private DataSource dataSource;
 	
 	@RequestMapping("sub01")
 	public void method1() throws Exception {
-		String sql ="SELECT * FROM Customers";
-		try(Connection con = dataSource.getConnection();
-				Statement stmt= con.createStatement();
+		String sql = "SELECT * FROM Customers";
+		try (Connection con = dataSource.getConnection();
+				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
-				){
-			if(rs.next()) {
+				) {
+			
+			if (rs.next()) {
 				System.out.println(rs.getString("customerName"));
-			} 
+			}
 		}
 	}
 }
+
+
+
+
+

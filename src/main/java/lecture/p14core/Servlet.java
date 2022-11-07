@@ -1,12 +1,15 @@
 package lecture.p14core;
 
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Servlet {
-	@Setter
+	
+	@Autowired
 	private Dao dao;
 	
 	public Dao getDao() {
 		return dao;
-	}	
+	}
 }

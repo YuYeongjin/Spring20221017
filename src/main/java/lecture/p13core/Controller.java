@@ -5,6 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public class Controller {
+	
 	@Getter
 	private Dao dao;
+	
+	
 }

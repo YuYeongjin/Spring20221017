@@ -10,44 +10,66 @@ public class Controller07 {
 
 	@GetMapping("sub01")
 	public void method1() {
-		System.out.println("method1");
-	}
-	@GetMapping(value="sub01", params="name")
-	public void method2() {
-		System.out.println("method2");
+		System.out.println("method1 !!!!!!!!!!!!!!!!!!!");
 	}
 	
-	//get sub02 경로
+	@GetMapping(value = "sub01", params = "name")
+	public void method2() {
+		System.out.println("method2 @@@@@");
+	}
+	
+	
+	// get 방식
+	// sub02 경로
 	@GetMapping("sub02")
 	public void method3() {
-		System.out.println("method3");
+		System.out.println("3번 메소드");
 	}
-	//get sub02 경로 'address' requset parameter
-	@GetMapping(value="sub02", params ="address")
-	public void method4() {
-		System.out.println("method4");
-	}
-	@GetMapping(value="sub03", params ="address")
-	public void method5() {
-		System.out.println("method5");
-	}
-	@GetMapping(value="sub03", params ="address=seoul")
-	public void method6() {
-		System.out.println("method6");
-	}
-	@GetMapping(path="sub03")
-	public void method7() {
-		System.out.println("method7");
-	}
-	@GetMapping(path="sub04")
-	public void method08() {
-		System.out.println("method8");
-	}
-
-	@GetMapping(path="sub04" , params= {"name","age"})
-	public void method09() {
-		System.out.println("method9");
-	}
-
 	
+	
+	// get 방식
+	// sub02 경로
+	// address  request param
+	@GetMapping(path = "sub02", params = "address")
+	public void method4() {
+		System.out.println("4번 메소드");
+	}
+	
+	@GetMapping(path = "sub03", params = "address=seoul")
+	public void method5() {
+		System.out.println("5번 메소드");
+	}
+	
+	@GetMapping(path = "sub03")
+	public void method6() {
+		System.out.println("6번 메소드");
+	}
+	
+	@GetMapping("sub04")
+	public void method7() {
+		System.out.println("7번 메소드");
+	}
+	
+	@GetMapping(path = "sub04", params = {"name", "age"})
+	public void method8() {
+		System.out.println("8번 메소드");
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
