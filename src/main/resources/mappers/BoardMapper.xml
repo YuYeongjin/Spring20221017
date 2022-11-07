@@ -6,18 +6,17 @@
 <mapper namespace="org.zerock.mapper.board.BoardMapper">
 
 	<select id="countAll" resultType="int">
-	SELECT COUNT(*) FROM Board
-	WHERE
+	SELECT COUNT(*) FROM Board WHERE
 		<trim prefixOverrides="OR">
-			<if test="#{type} == 'all' or type == 'title'">
+			<if test="type == 'all' or type == 'title'">
 			OR title LIKE #{keyword}
 			</if>
 
-			<if test="#{type} == 'all' or type == 'content'">
+			<if test="type == 'all' or type == 'content'">
 			OR content LIKE #{keyword}
 			</if>
 
-			<if test="#{type} == 'all' or type == 'writer'">
+			<if test="type == 'all' or type == 'writer'">
 			OR writer LIKE #{keyword}
 			</if>
 		</trim>
