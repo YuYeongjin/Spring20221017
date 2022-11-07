@@ -15,3 +15,9 @@ public class JavaBean6 {
 	
 	
 }
+
+
+
+
+
+

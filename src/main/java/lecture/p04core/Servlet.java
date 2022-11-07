@@ -7,4 +7,6 @@ public class Servlet {
 	@Setter
 	@Getter
 	private Dao dao;
+	
+	
 }

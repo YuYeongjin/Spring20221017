@@ -7,4 +7,5 @@
 		<property name="repository" ref="repository"></property>
 	</bean>
 	<bean id="repository" class="lecture.p05core.Repository"></bean>
+
 </beans>

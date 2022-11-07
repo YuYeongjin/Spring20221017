@@ -7,9 +7,14 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-@Setter
 @Getter
+@Setter
 public class JavaBean4 {
 	private String address;
-	private int scire;
+	private int score;
+	
 }
+
+
+
+

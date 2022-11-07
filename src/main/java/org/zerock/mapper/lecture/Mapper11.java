@@ -1,5 +1,7 @@
 package org.zerock.mapper.lecture;
 
+import java.util.List;
+
 import org.zerock.domain.lecture.JavaBean18;
 import org.zerock.domain.lecture.JavaBean19;
 
@@ -22,6 +24,10 @@ public interface Mapper11 {
 	int deleteCustomer(int id);
 
 	int deleteSupplier(int id);
+
+	List<JavaBean19> getSuppliers();
+
+	List<JavaBean18> getCustomers();
 }
 
 

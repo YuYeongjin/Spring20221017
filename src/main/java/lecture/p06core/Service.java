@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 public class Service {
+
+	@Getter
 	private Dao dao;
-	
+
 	
 }

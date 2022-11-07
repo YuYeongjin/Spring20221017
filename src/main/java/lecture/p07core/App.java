@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 	public static void main(String[] args) {
-		String loc = "lecture/p07core/context.xml";
+		String loc = "/lecture/p07core/context.xml";
 		ApplicationContext context = new ClassPathXmlApplicationContext(loc);
 		
 		Service s = context.getBean(Service.class);
@@ -14,6 +14,11 @@ public class App {
 		System.out.println(s);
 		System.out.println(d);
 		
-		System.out.println("프로그램 계속 실행");
+		System.out.println("프로그램 실행 계속됨");
 	}
 }
+
+
+
+
+

@@ -2,13 +2,13 @@ package lecture.p01lombok;
 
 import lombok.Data;
 
-@Data // 아래 5f개의 어노테이션을 한번에 적용
+@Data // 아래 다섯 개의 어노테이션을 한번에 적용함
+//@ToString
+//@EqualsAndHashCode
+//@Getter
+//@Setter
 //@RequiredArgsConstructor
-//@Tostring
-//@getter
-//@setter
-//@equalsandhashcode
 public class JavaBean5 {
 	private String name;
-	private int score;
+	private int age;
 }

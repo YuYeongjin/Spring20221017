@@ -4,6 +4,40 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="org.zerock.mapper.lecture.Mapper11">
+<select id="getSuppliers" resultType="org.zerock.domain.lecture.JavaBean19">
+SELECT 
+	SupplierId id,
+	SupplierName name,
+	ContactName contactName,
+	Address address,
+	City city,
+	PostalCode postalCode,
+	Country country,
+	Phone phone
+FROM 
+	Suppliers
+ORDER BY 
+	SupplierId DESC
+LIMIT 0, 10
+	</select>
+
+	<select id="getCustomers" resultType="org.zerock.domain.lecture.JavaBean18">
+SELECT
+	CustomerId id,
+	CustomerName name,
+	ContactName,
+	Address,
+	City,
+	PostalCode, 
+	Country
+FROM 
+	Customers
+ORDER BY 
+	CustomerID DESC
+LIMIT 0, 10
+	
+	</select>
+
 	<delete id="deleteSupplier">
 	DELETE FROM Suppliers WHERE SupplierId = #{id}
 	</delete>

@@ -1,5 +1,6 @@
 package org.zerock.controller.board;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class BoardController {
 
 	@GetMapping("register")
 	public void register() {
+		System.out.println("포워드됌");
 		// 게시물 작성 view로 포워드
 		// /WEB-INF/views/board/register.jsp
 	}
@@ -39,7 +41,7 @@ public class BoardController {
 		} else {
 			rttr.addFlashAttribute("message", "새 게시물이 등록되지 않았습니다.");
 		}
-		
+		System.out.println("리스트로 리다이렉트");
 		// /board/list로 redirect
 		return "redirect:/board/list";
 	}
@@ -54,10 +56,11 @@ public class BoardController {
 		// request param
 		// business logic
 		List<BoardDto> list = service.listBoard(page, type, keyword, pageInfo);
-		
+		System.out.println("여기까지 가능1");
 		// add attribute
 		model.addAttribute("boardList", list);
 		// forward
+		System.out.println("여기까지 가능2");
 	}
 
 	// 위 list 메소드 파라미터 PageInfo에 일어나는 일을 풀어서 작성
