@@ -2,6 +2,7 @@ package org.zerock.mapper.board;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.board.BoardDto;
 
 public interface BoardMapper {
@@ -9,7 +10,7 @@ public interface BoardMapper {
 	
 	int insert(BoardDto board);
 
-	List<BoardDto> list(int offset, int records, String type, String keyword);
+	List<BoardDto> list(@Param("offset") int offset, @Param("records")int records, @Param("type")String type,@Param("keyword") String keyword);
 
 	BoardDto select(int id);
 
@@ -17,7 +18,7 @@ public interface BoardMapper {
 
 	int delete(int id);
 
-	int countAll(String type,String keyword);
+	int countAll(@Param("type")String type,@Param("keyword")String keyword);
 
 }
 

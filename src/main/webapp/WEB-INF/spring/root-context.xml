@@ -18,31 +18,30 @@
 		<property name="password" value="${jdbc.password}"></property>
 		<property name="maximumPoolSize" value="1"></property>
 	</bean>
-	
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-<!--		<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
-		<property name="mapperLocations" value="classpath*:/mappers/**/*.xml"></property>
+		<property name="mapperLocations" value="classpath*:/mappers/**/*.xml"/>
+
 	</bean>
-	<bean id="sqlSession"
-				class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
+
 	<context:property-placeholder location="/WEB-INF/props/jdbc.properties" />
-	
+
 	<!-- mapper 스캔 -->
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
-	
+
 	<!-- service 스캔 -->
 	<context:component-scan base-package="org.zerock.service"></context:component-scan>
-	
+
 	<!-- transaction 처리 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>	
+		<property name="dataSource" ref="dataSource"></property>
+
 	</bean>
-	
+
 	<tx:annotation-driven/>
 </beans>
+
 
 
 
