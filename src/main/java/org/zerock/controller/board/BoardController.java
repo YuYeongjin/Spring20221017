@@ -1,6 +1,5 @@
 package org.zerock.controller.board;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.board.BoardDto;
 import org.zerock.domain.board.PageInfo;
@@ -18,34 +18,46 @@ import org.zerock.service.board.BoardSerivce;
 @Controller
 @RequestMapping("board")
 public class BoardController {
-	
+
 	@Autowired
 	private BoardSerivce service;
 
 	@GetMapping("register")
 	public void register() {
-		System.out.println("포워드됌");
 		// 게시물 작성 view로 포워드
 		// /WEB-INF/views/board/register.jsp
 	}
-	
+
 	@PostMapping("register")
-	public String register(BoardDto board, RedirectAttributes rttr) {
+	public String register(
+			BoardDto board,
+			MultipartFile[] files,
+			RedirectAttributes rttr) {
+		// * 파일업로드
+		// 1. web.xml
+		//    dispatcherServlet 설정에 multipart-config 추가
+		// 2. form 에 enctype="multipart/form-data" 속성 추가
+		// 3. Controller의 메소드 argument type : MultipartFile
+
 		// request param 수집/가공
-		
+//		System.out.println(files.length);
+//		for (MultipartFile file : files) {
+//			System.out.println(file.getOriginalFilename());
+//		}
+
 		// business logic
-		int cnt = service.register(board);
-		
+		int cnt = service.register(board, files);
+
 		if (cnt == 1) {
 			rttr.addFlashAttribute("message", "새 게시물이 등록되었습니다.");
 		} else {
 			rttr.addFlashAttribute("message", "새 게시물이 등록되지 않았습니다.");
 		}
-		System.out.println("리스트로 리다이렉트");
+
 		// /board/list로 redirect
 		return "redirect:/board/list";
 	}
-	
+
 	@GetMapping("list")
 	public void list(
 			@RequestParam(name = "page", defaultValue = "1") int page,
@@ -56,11 +68,10 @@ public class BoardController {
 		// request param
 		// business logic
 		List<BoardDto> list = service.listBoard(page, type, keyword, pageInfo);
-		System.out.println("여기까지 가능1");
+
 		// add attribute
 		model.addAttribute("boardList", list);
 		// forward
-		System.out.println("여기까지 가능2");
 	}
 
 	// 위 list 메소드 파라미터 PageInfo에 일어나는 일을 풀어서 작성
@@ -73,18 +84,18 @@ public class BoardController {
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setLastPageNumber(Integer.parseInt(request.getParameter("lastPageNumber")));
 		model.addAttribute("pageInfo", pageInfo);
-		
+
 		// business logic
 		List<BoardDto> list = service.listBoard(page, pageInfo);
-		
+
 		// add attribute
 		model.addAttribute("boardList", list);
 		// forward
 	}
 	*/
-	
-	
-	@GetMapping("get") 
+
+
+	@GetMapping("get")
 	public void get(
 			// @RequestParam 생략 가능
 			@RequestParam(name = "id") int id,
@@ -95,33 +106,49 @@ public class BoardController {
 		// add attribute
 		model.addAttribute("board", board);
 		// forward
-		
+
 	}
-	
+
 	@GetMapping("modify")
 	public void modify(int id, Model model) {
 		BoardDto board = service.get(id);
 		model.addAttribute("board", board);
-		
+
 	}
-	
+
 	@PostMapping("modify")
-	public String modify(BoardDto board, RedirectAttributes rttr) {
-		int cnt = service.update(board);
-		
+	public String modify(BoardDto board,
+						 RedirectAttributes rttr,
+						 @RequestParam(name="removeFiles",required = false) List<String> removeFiles,
+						 @RequestParam("files") MultipartFile[] addFiles) {
+		// 지울 파일명 들어오는지 확인
+		if(removeFiles != null){
+			for(String name :removeFiles){
+				System.out.println(name);
+			}
+		}
+
+		int cnt = service.update(board,addFiles, removeFiles);
+
+//		if(files!=null){
+//			System.out.println("files.length: " + files.length);
+//			for (MultipartFile file : files) {
+//				System.out.println(file.getOriginalFilename());
+//			}
+//		}
 		if (cnt == 1) {
 			rttr.addFlashAttribute("message", board.getId() + "번 게시물이 수정되었습니다.");
 		} else {
 			rttr.addFlashAttribute("message", board.getId() + "번 게시물이 수정되지 않았습니다.");
 		}
-		
+
 		return "redirect:/board/list";
 	}
-	
+
 	@PostMapping("remove")
 	public String remove(int id, RedirectAttributes rttr) {
 		int cnt = service.remove(id);
-		
+
 		if (cnt == 1) {
 			// id번 게시물이 삭제되었습니다.
 			rttr.addFlashAttribute("message", id + "번 게시물이 삭제되었습니다.");
@@ -129,12 +156,14 @@ public class BoardController {
 			// id번 게시물이 삭제되지 않았습니다.
 			rttr.addFlashAttribute("message", id + "번 게시물이 삭제되지 않았습니다.");
 		}
-		
+
 		return "redirect:/board/list";
 	}
-	
-	
+
+
 }
+
+
 
 
 

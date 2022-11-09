@@ -2,23 +2,28 @@ package org.zerock.mapper.board;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.board.BoardDto;
 
 public interface BoardMapper {
 
-	
+
 	int insert(BoardDto board);
 
-	List<BoardDto> list(@Param("offset") int offset, @Param("records")int records, @Param("type")String type,@Param("keyword") String keyword);
+	List<BoardDto> list(int offset,int records,String type,String keyword);
 
-	BoardDto select(@Param("id") int id);
+	BoardDto select(int id);
 
 	int update(BoardDto board);
 
-	int delete(@Param("id") int id);
+	int delete(int id);
 
-	int countAll(@Param("type")String type,@Param("keyword")String keyword);
+	int countAll(String type,String keyword);
+
+	int insertFile(int id,String fileName);
+
+	int deleteFileByBoardId(int id);
+
+	int deleteFileByName(int id, String fileName);
 
 }
 

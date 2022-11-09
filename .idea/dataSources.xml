@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mariadb://3.38.96.35:3306/w3schools</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="prj1@webservicedb.c96kpkcwajbt.ap-northeast-2.rds.amazonaws.com" uuid="d6438c06-7be6-4de0-8267-42a102aae4e8">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://webservicedb.c96kpkcwajbt.ap-northeast-2.rds.amazonaws.com:3306/prj1</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

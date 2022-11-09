@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col">
 			<h1>게시물 작성</h1>
-			<form action="" method="post">
+			<form action="" method="post" enctype="multipart/form-data">
 				<div class="mb-3">
 					<label for="" class="form-label">제목</label>
 					<input type="text" class="form-control" name="title">
@@ -26,6 +26,12 @@
 					<label for="" class="form-label">본문</label>
 					<textarea rows="5" class="form-control" name="content"></textarea>
 				</div>
+
+				<div class="mb-3">
+					<label for="" class="form-label">파일</label>
+					<input multiple type="file" accept="image/*" class="form-control" name="files">
+				</div>
+
 				<div class="mb-3">
 					<label for="" class="form-label">작성자</label>
 					<input type="text" class="form-control" name="writer">
@@ -43,3 +49,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

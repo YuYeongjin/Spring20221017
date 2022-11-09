@@ -1,4 +1,5 @@
 package org.zerock.controller.board;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,22 +22,6 @@ public class ReplyController {
 
     @Autowired
     private ReplyService service;
-
-    @PutMapping("modify")
-    @ResponseBody
-    public Map<String, Object> modify(@RequestBody ReplyDto reply) {
-        Map<String, Object> map = new HashMap<>();
-
-        int cnt = service.modify(reply);
-
-        if (cnt == 1) {
-            map.put("message", "댓글이 수정되었습니다.");
-        } else {
-            map.put("message", "댓글이 수정되지 않았습니다.");
-        }
-
-        return map;
-    }
 
     @GetMapping("get/{id}")
     @ResponseBody
@@ -81,6 +65,11 @@ public class ReplyController {
         return map;
     }
 }
+
+
+
+
+
 
 
 
