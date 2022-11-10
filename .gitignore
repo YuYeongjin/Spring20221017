@@ -7,4 +7,4 @@ build/
 .springBeans
 src/main/webapp/WEB-INF/props/jdbc.properties
 mybatis-config.xml
-aws.properties
+src/main/webapp/WEB-INF/props/aws.properties
