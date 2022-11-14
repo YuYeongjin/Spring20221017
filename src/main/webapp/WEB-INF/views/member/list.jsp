@@ -36,6 +36,7 @@
                     <tr>
                         <td>${member.id }</td>
                         <td>${member.password }</td>
+
                         <td>${member.email }</td>
                         <td>${member.inserted }</td>
                     </tr>
