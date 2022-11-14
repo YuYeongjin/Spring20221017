@@ -26,11 +26,11 @@
                     </label>
 
                     <div class="input-group">
-                        <input class="form-control" type="text" name="id">
-                        <button class="btn btn-outline-secondary" type="button">중복확인</button>
+                        <input id="userIdInput1" class="form-control" type="text" name="id">
+                        <button id="userIdExistButton1"class="btn btn-outline-secondary" type="button">중복확인</button>
                     </div>
 
-                    <div class="form-text">어떤 메시지....</div>
+                    <div id="userIdText1" class="form-text">아이디 중복확인을 해주세요.</div>
 
                 </div>
 
@@ -38,15 +38,15 @@
                     <label for="" class="form-label">
                         암호
                     </label>
-                    <input id="passswordInput1" class="form-control" type="password" name="password">
-                    <div  id="passswordText1" class="form-text">암호 확인 결과...</div>
+                    <input id="passwordInput1" class="form-control" type="text" name="password">
+                    <div id="passwordText1" class="form-text"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">
                         암호 확인
                     </label>
-                    <input id="passswordInput2" class="form-control" type="password">
+                    <input id="passwordInput2" class="form-control" type="text">
                 </div>
 
                 <div class="mb-3">
@@ -55,42 +55,56 @@
                     </label>
 
                     <div class="input-group">
-                        <input  class="form-control" type="email" name="email">
-                        <button   type="button" class="btn btn-outline-secondary">중복확인</button>
+                        <input class="form-control" type="email" name="email">
+                        <button type="button" class="btn btn-outline-secondary">중복확인</button>
                     </div>
 
                     <div class="form-text">확인 메시지....</div>
                 </div>
 
-                <input class="btn btn-primary" type="submit" value="가입">
+                <input disabled class="btn btn-primary" type="submit" value="가입">
 
             </form>
         </div>
     </div>
 </div>
-<script>
-    const passwordInput1=document.querySelector("#passswordInput1");
-    const passwordInput2=document.querySelector("#passswordInput2");
-    const passwordText1=document.querySelector("#passswordText1")
-    /*패스워드 일치하는지 확인 */
-    function matchPassword(){
-        console.log("키보드 이벤트");
-        console.log(passwordInput1.value);
-        console.log(passwordInput2.value);
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
+<script>
+    const ctx = "${pageContext.request.contextPath}";
+    document.querySelector("#userIdExistButton1").addEventListener("click",function(){
+        // 입력된 userId를
+        const userId = document.querySelector("#userIdInput1").value;
+
+        // fetch 요청 보내고
+        fetch(ctx + "/member/existId/"+ userId)
+            .then(res => res.json())
+            // 응답 받아서
+            .then(data => {
+                // 결과를 출력
+                document.querySelector("#userIdText1").innerText = data.message;
+            });
+    });
+    ///////////////////////////////////
+    /* 패스워드 일치하는 지 확인 */
+    const passwordInput1 = document.querySelector("#passwordInput1");
+    const passwordInput2 = document.querySelector("#passwordInput2");
+    const passwordText1 = document.querySelector("#passwordText1");
+
+    function matchPassword() {
         const value1 = passwordInput1.value;
         const value2 = passwordInput2.value;
 
-        if(value1==value2){
-            passwordText1.innerHTML="패스워드가 일치합니다."
-        } else{
-            passwordText1.innerHTML="패스워드가 일치하지 않습니다."
+        if (value1 == value2) {
+            passwordText1.innerText = "패스워드가 일치합니다.";
+        } else {
+            passwordText1.innerText = "패스워드가 일치하지 않습니다.";
         }
     }
-    passwordInput1.addEventListener("keyup",matchPassword);
-    passwordInput2.addEventListener("keyup",matchPassword);
 
+    passwordInput1.addEventListener("keyup", matchPassword);
+    passwordInput2.addEventListener("keyup", matchPassword);
+    /* ///////////////// */
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

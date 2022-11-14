@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<my:navBar active="list"></my:navBar>
+
+<my:navBar></my:navBar>
 
 <div class="container-md">
   <div class="row">
     <div class="col">
-
 
       <c:if test="${not empty message }">
         <div class="alert alert-success">
@@ -25,136 +25,147 @@
         </div>
       </c:if>
 
-      <h1>게시물 목록</h1>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>작성일시</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${boardList}" var="board">
-          <tr>
-            <td>${board.id }</td>
-            <td>
-              <c:url value="/board/get" var="getLink">
-                <c:param name="id" value="${board.id }"></c:param>
-              </c:url>
-              <a href="${getLink }">
-                  ${board.title }
-              </a>
+      <h1>회원 정보 수정</h1>
 
-                <%-- 댓글 수 출력 --%>
-              <c:if test="${board.countReply > 0 }">
-										<span class="badge rounded-pill text-bg-light">
-											<i class="fa-regular fa-comment-dots"></i>
-											${board.countReply }
-										</span>
-              </c:if>
+      <form id="form1" action="" method="post">
 
-                <%-- 파일 수 출력 --%>
-              <c:if test="${board.countFile > 0 }">
-										<span class="badge rounded-pill text-bg-light">
-											<i class="fa-regular fa-file"></i>
-											${board.countFile }
-										</span>
-              </c:if>
-            </td>
-            <td>${board.writer }</td>
-            <td>${board.ago }</td>
-          </tr>
-        </c:forEach>
-        </tbody>
-      </table>
+        <div class="mb-3">
+          <label for="" class="form-label">
+            아이디
+          </label>
+          <input class="form-control-plaintext" type="text" value="${member.id }" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">
+            암호
+          </label>
+          <input id="passwordInput1" class="form-control" type="text" value="${member.password }" name="password">
+          <div id="passwordText1" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label">
+            암호 확인
+          </label>
+          <input id="passwordInput2" class="form-control" type="text">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="" class="form-label">
+            이메일
+          </label>
+          <div class="input-group">
+            <input class="form-control" type="email" value="${member.email }" name="email">
+            <button type="button" class="btn btn-outline-secondary">중복확인</button>
+          </div>
+          <div class="form-text">확인 메시지....</div>
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">
+            가입일시
+          </label>
+          <input class="form-control-plaintext" type="text" value="${member.inserted }" readonly>
+        </div>
+
+        <input type="hidden" name="oldPassword">
+      </form>
+
+      <c:url value="/member/remove" var="removeUrl" />
+      <form id="form2" action="${removeUrl }" method="post">
+        <input type="hidden" name="id" value="${member.id }">
+        <input type="hidden" name="oldPassword">
+      </form>
+      <input class="btn btn-warning" type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
+      <input class="btn btn-danger" type="submit" value="탈퇴" data-bs-toggle="modal" data-bs-target="#removeModal">
     </div>
   </div>
+</div>
 
-  <!-- .row>.col -->
-  <div class="row">
-    <div class="col">
-      <nav class="mt-3" aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+<%-- 수정 시 예전암호 입력 Modal --%>
+<div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input id="oldPasswordInput1" type="text" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="modalConfirmButton" type="button" class="btn btn-primary">수정</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-          <%-- 맨앞 버튼은 1페이지가 아니면 존재함 --%>
-          <c:if test="${pageInfo.currentPageNumber ne 1 }">
-            <c:url value="/board/list" var="listLink">
-              <c:param name="page" value="1" />
-              <c:param name="q" value="${param.q }" />
-              <c:param name="t" value="${param.t }" />
-            </c:url>
-            <!-- li.page-item>a.page-link{맨앞버튼} -->
-            <li class="page-item">
-              <a href="${listLink }" class="page-link">
-                <i class="fa-solid fa-angles-left"></i>
-              </a>
-            </li>
-          </c:if>
-
-          <c:if test="${pageInfo.hasPrevButton }">
-            <c:url value="/board/list" var="listLink">
-              <c:param name="page" value="${pageInfo.jumpPrevPageNumber }"></c:param>
-              <c:param name="q" value="${param.q }" />
-              <c:param name="t" value="${param.t }" />
-            </c:url>
-            <li class="page-item">
-              <a href="${listLink }" class="page-link">
-                <i class="fa-solid fa-angle-left"></i>
-              </a>
-            </li>
-          </c:if>
-
-          <c:forEach begin="${pageInfo.leftPageNumber }" end="${pageInfo.rightPageNumber }" var="pageNumber">
-            <c:url value="/board/list" var="listLink">
-              <c:param name="page" value="${pageNumber }" />
-              <c:param name="q" value="${param.q }" />
-              <c:param name="t" value="${param.t }" />
-            </c:url>
-            <li class="page-item
-
-					    	<%-- 현재페이지에 active 클래스 추가 --%>
-					    	${pageInfo.currentPageNumber eq pageNumber ? 'active' : '' }
-
-					    "><a class="page-link" href="${listLink }">${pageNumber }</a></li>
-          </c:forEach>
-
-          <c:if test="${pageInfo.hasNextButton }">
-            <c:url value="/board/list" var="listLink">
-              <c:param name="page" value="${pageInfo.jumpNextPageNumber }"></c:param>
-              <c:param name="q" value="${param.q }" />
-              <c:param name="t" value="${param.t }" />
-            </c:url>
-            <li class="page-item">
-              <a href="${listLink }" class="page-link">
-                <i class="fa-solid fa-angle-right"></i>
-              </a>
-            </li>
-          </c:if>
-
-
-          <c:if test="${pageInfo.currentPageNumber ne pageInfo.lastPageNumber }">
-            <c:url value="/board/list" var="listLink">
-              <c:param value="${pageInfo.lastPageNumber }" name="page" />
-              <c:param name="q" value="${param.q }" />
-              <c:param name="t" value="${param.t }" />
-            </c:url>
-            <!-- li.page-item>a.page-link{맨뒤버튼} -->
-            <li class="page-item">
-              <a href="${listLink }" class="page-link">
-                <i class="fa-solid fa-angles-right"></i>
-              </a>
-            </li>
-          </c:if>
-        </ul>
-      </nav>
+<%-- 탈퇴 시 예전암호 입력 Modal --%>
+<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">기존 암호 입력</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input id="oldPasswordInput2" type="text" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="modalConfirmButton2" type="button" class="btn btn-danger">탈퇴</button>
+      </div>
     </div>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script>
+  <%-- 암호 입력 일치하는지 확인 --%>
+  const passwordInput1 = document.querySelector("#passwordInput1");
+  const passwordInput2 = document.querySelector("#passwordInput2");
+  const passwordText1 = document.querySelector("#passwordText1");
+
+  passwordInput1.addEventListener("keyup", matchPassword);
+  passwordInput2.addEventListener("keyup", matchPassword);
+
+  function matchPassword() {
+    if (passwordInput1.value == passwordInput2.value) {
+      passwordText1.innerText = "패스워드가 일치 합니다.";
+    } else {
+      passwordText1.innerText = "패스워드가 일치하지 않습니다.";
+    }
+  }
+
+  <%-- 탈퇴 모달 확인 버튼 눌렀을 때 --%>
+  document.querySelector("#modalConfirmButton2").addEventListener("click", function() {
+    const form = document.forms.form2;
+    const modalInput = document.querySelector("#oldPasswordInput2");
+    const formOldPasswordInput = document.querySelector(`#form2 input[name="oldPassword"]`)
+    // 모달 안의 기존 암호 input 값을
+    // form의 기존 암호 input에 옮기고
+    formOldPasswordInput.value = modalInput.value;
+
+    // form을 submit
+    form.submit();
+  });
+
+  <%-- 수정 모달 확인 버튼 눌렀을 때 --%>
+  document.querySelector("#modalConfirmButton").addEventListener("click", function() {
+    const form = document.forms.form1;
+    const modalInput = document.querySelector("#oldPasswordInput1");
+    const formOldPasswordInput = document.querySelector(`#form1 input[name="oldPassword"]`)
+    // 모달 암호 input 입력된 값을
+    // form 안의 기존암호 input에 옮기고
+    formOldPasswordInput.value = modalInput.value;
+
+    // form을 submit
+    form.submit();
+  });
+</script>
 </body>
 </html>
+
 
 
 
